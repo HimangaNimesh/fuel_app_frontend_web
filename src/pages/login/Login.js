@@ -1,17 +1,22 @@
 import axios from "axios";
 import React, { useState } from "react";
-import './UserLogin.css'
+import './Login.css'
 import { Link } from "react-router-dom";
 
-export const UserLogin = () => {
-    const [email, setEmail] =useState("");
-    const [password, setPassword] = useState("");
+export const Login = () => {
+    const [userEmail, setUserEmail] =useState("");
+    const [userPassword, setUserPassword] = useState("");
+    const [stationEmail, setStationEmail] = useState("");
+    const [statioinPassword, setStationPassword] =useState("");
     const [userLogin, setUserLogin] = useState(true);
 
     const handleUserLogin = async(e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("auth/user/signin", {email, password})
+            const res = await axios.post("auth/user/signin", {
+                email: userEmail, 
+                password: userPassword
+            })
             console.log(res.data)
         } catch (error) {
             console.log(error);
@@ -20,14 +25,17 @@ export const UserLogin = () => {
     const handleStationLogin = async(e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("auth/station/signin", {email, password})
+            const res = await axios.post("auth/station/signin", {
+                email: stationEmail, 
+                password: statioinPassword
+            })
             console.log(res.data)
         } catch (error) {
             console.log(error);
         }
     }
     return (
-        <div className="UserLoginWrapper">
+        <div className="LoginWrapper">
             <div className="topSection">
                 <p>Chose a way u like to Login</p>
                 <div className="buttons">
@@ -41,22 +49,22 @@ export const UserLogin = () => {
                         <input 
                             type="text"
                             placeholder="Email"
-                            value={email}
+                            value={userEmail}
                             onChange={e=> {
-                                setEmail(e.target.value)
+                                setUserEmail(e.target.value)
                             }}
                         />
                         <input 
                             type="password"
                             placeholder="password"
-                            value={password}
+                            value={userPassword}
                             onChange={e=> {
-                                setPassword(e.target.value)
+                                setUserPassword(e.target.value)
                             }}
                         />
                         <button onClick={handleUserLogin}>Login</button>
                         <div className="reg">
-                            <Link to="/register">Register</Link> 
+                            <Link className="link" to="/register">Register</Link> 
                         </div>
                     </div>
                 ) : (
@@ -65,17 +73,17 @@ export const UserLogin = () => {
                         <input 
                             type="text"
                             placeholder="Email"
-                            value={email}
+                            value={stationEmail}
                             onChange={e=> {
-                                setEmail(e.target.value)
+                                setStationEmail(e.target.value)
                             }}
                         />
                         <input 
                             type="password"
                             placeholder="password"
-                            value={password}
+                            value={statioinPassword}
                             onChange={e=> {
-                                setPassword(e.target.value)
+                                setStationPassword(e.target.value)
                             }}
                         />
                         <button onClick={handleStationLogin}>Login</button>
