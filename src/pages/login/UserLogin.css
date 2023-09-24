@@ -63,3 +63,19 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap:5px;
+}
+
+.link{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: #ff5500; 
+  }
